@@ -67,16 +67,19 @@ LOG_LEVEL=INFO
 ```
 
 ## Основные API-ручки
-- `GET /health`
-- `GET /livez`
-- `GET /service-info`
-- `GET /quotas`
-- `POST /quotas`
-- `GET /quotas/{quota_id}`
-- `PATCH /quotas/{quota_id}`
-- `DELETE /quotas/{quota_id}`
-- `POST /quotas/check`
-- `POST /quotas/consume`
+
+| Метод | Ручка | Кто использует | Назначение |
+|--------|-------|----------------|------------|
+| `GET` | `/health` | Ingress, мониторинг | Проверяет доступность quota service. |
+| `GET` | `/livez` | Kubernetes | Liveness probe контейнера. |
+| `GET` | `/service-info` | Frontend, state facade | Возвращает служебную информацию о quota service. |
+| `GET` | `/quotas` | Frontend, inference gateway | Возвращает список квот и текущее потребление. |
+| `POST` | `/quotas` | Frontend | Создает квоту для пользователя, команды, продукта или deployment. |
+| `GET` | `/quotas/{quota_id}` | Frontend | Возвращает детальную информацию по квоте. |
+| `PUT` | `/quotas/{quota_id}` | Frontend | Обновляет лимит, период, действие при превышении и priority. |
+| `DELETE` | `/quotas/{quota_id}` | Frontend | Удаляет или отключает квоту. |
+| `POST` | `/quotas/check` | Inference gateway | Проверяет перед запросом, можно ли пропустить инференс, заблокировать или замедлить. |
+| `POST` | `/quotas/usage-events` | Inference gateway | Записывает фактическое потребление токенов после ответа модели. |
 
 ## Сборка и запуск в Docker
 
