@@ -1,7 +1,5 @@
 # Quota Service
 
-[HSE-LLM-PROJECT-2026/quota_service](https://github.com/HSE-LLM-PROJECT-2026/quota_service)
-
 ## Описание
 
 FastAPI-сервис для квотирования потребления инференса. Сервис хранит лимиты и счетчики, а inference gateway обращается к нему перед выполнением запроса.
